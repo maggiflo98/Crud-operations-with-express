@@ -3,24 +3,9 @@ const router= express.Router();
 const db=require("../config-environment/db");
 const path=require('path');
 
-// getall shoes
-router.get("/",(req,res)=>{
-    
-
-    var sql=SELECT * FROM `shoes`;
-    
-    db.query(sql,(err,products_available)=>{
-        if(err)
-            throw err;
-        var context={
-            products: shoes_available
-
-        };
-        res.render('products',{ products:products_available});
-    });
-});
 
 
+// posting shoes
 router.post("/post/",(req,res)=>{
   var name=req.body.name;
   var brand=req.body.brand;
@@ -38,10 +23,45 @@ router.post("/post/",(req,res)=>{
     
     })
 });
-   
+
+// deleting shoes
+
+// getting shoes
+router.get("/",(req,res,next)=>{
+
+// res.status(200).json({"successful":"successful"})
+
+// select shoes
+
+var sql="SELECT * FROM `shoes` ";
 
 
+    db.query(sql,function (err,products_available) {
+        if(err)
+            throw err;
+            else{
+                res.json(Shoesdb);
+            }
+        
+    });
 
+});
+
+router.delete('/:id',function (req,res) {
+
+    var sql="DELETE FROM `shoes` WHERE id='"+req.params.id+"'";
+        var shoes_id=req.params.id;
+    
+        db.query(sql,function (err,deleted) {
+            if (err)
+                throw err;
+            else{
+                res.send('deleted successfuly')
+            }
+    
+        })
+    });
+    
 
 
 
