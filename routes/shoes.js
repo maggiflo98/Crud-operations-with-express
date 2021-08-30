@@ -29,15 +29,13 @@ router.post("/post/",(req,res)=>{
 
 // // getting shoes
 
-
-
 router.get('/',function (req,res,next) {
-    res.send('successful')
+    
     var  sql="SELECT * FROM `shoes`";
-     db.query(sql,(err,res)=>{
+     db.query(sql,(err,dbResults)=>{
         if(err) throw err;
         else{
-            
+           res.send(dbResults);
         }
         
      })
@@ -47,6 +45,21 @@ router.get('/',function (req,res,next) {
      
     
 });
+
+// get a single shoe
+router.get("/:id",(req,res)=>{
+    var shoes_id=req.params.id;
+    var sql="SELECT `id`, `name`, `brand`, `price`, `contact` FROM `shoes` WHERE id='"+shoes_id+"'";
+    db.query(sql,(err,dbResults)=>{
+        if(err)
+            throw err;
+            else{
+                res.send(dbResults);
+            }
+
+    })
+
+})
 
 
 
