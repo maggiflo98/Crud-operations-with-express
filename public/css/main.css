@@ -1,0 +1,21 @@
+body {
+  background-color: whitesmoke;
+  padding: 20px 60px;
+}
+.navbar {
+  display: flex;
+  background-color: rgb(60, 86, 134);
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+.nav-links a {
+  padding-left: 10rem;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
